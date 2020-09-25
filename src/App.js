@@ -2,8 +2,57 @@
 
 import React from "react";
 import "./App.css";
+import { useState, useCallback } from "react";
+
+const QUALITIES = {
+  alert: "Alert",
+  appreciative: "Appreciative",
+  attentive: "Attentive",
+  clear: "Clear",
+  compassionate: "Compassionate",
+  courageous: "Courageous",
+  creative: "Creative",
+  empowering: "Empowering",
+  enthusiastic: "Enthusiastic",
+  flexible: "Flexible",
+  focused: "Focused",
+  generous: "Generous",
+  gentle: "Gentle",
+  grateful: "Grateful",
+  joyous: "Joyous",
+  kind: "Kind",
+  loving: "Loving",
+  open: "Open",
+  present: "Present",
+  receptive: "Receptive",
+  supportive: "Supportive",
+  truthful: "Truthful",
+  vulnerable: "Vulnerable",
+};
+
+const MAX_QUALITIES = 5;
 
 function App() {
+  React.useEffect(() => {
+    console.log("Yoooo!");
+  });
+
+  const [activeQualities, setActiveQualities] = useState<Array<string>>([]);
+  console.log(activeQualities);
+
+  const toggleQuality = useCallback(
+    (word) => {
+      if (activeQualities.includes(word)) {
+        setActiveQualities(activeQualities.filter((w) => w !== word));
+      } else {
+        if (activeQualities.length < MAX_QUALITIES) {
+          setActiveQualities(activeQualities.concat(word));
+        }
+      }
+    },
+    [activeQualities]
+  );
+
   return (
     <div className="App">
       <div className="container-narrow">
@@ -14,156 +63,30 @@ function App() {
         <div id="qualities">
           <h4>
             Qualities of Being{" "}
-            <button className="btn btn-warning btn-small" id="clear_qualities">
+            <button
+              className="btn btn-warning btn-small"
+              id="clear_qualities"
+              onClick={() => setActiveQualities([])}
+            >
               Reset
             </button>
           </h4>
           <ul>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="alert">
-                Alert
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="appreciative"
-              >
-                Appreciative
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="attentive">
-                Attentive
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="clear">
-                Clear
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="compassionate"
-              >
-                Compassionate
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="courageous"
-              >
-                Courageous
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="creative">
-                Creative
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="empowering"
-              >
-                Empowering
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="enthusiastic"
-              >
-                Enthusiastic
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="flexible">
-                Flexible
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="focused">
-                Focused
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="generous">
-                Generous
-              </button>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="gentle">
-                Gentle
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="grateful">
-                Grateful
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="joyous">
-                Joyous
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="kind">
-                Kind
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="loving">
-                Loving
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="open">
-                Open
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="present">
-                Present
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="receptive">
-                Receptive
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="supportive"
-              >
-                Supportive
-              </button>
-            </li>
-            <li>
-              <button className="btn" data-toggle="button" data-quality="truthful">
-                Truthful
-              </button>
-            </li>
-            <li>
-              <button
-                className="btn"
-                data-toggle="button"
-                data-quality="vulnerable"
-              >
-                Vulnerable
-              </button>
-            </li>
+            {Object.values(QUALITIES).map((word) => (
+              <li key={word}>
+                <button
+                  className={[
+                    "btn",
+                    activeQualities.includes(word) ? "btn-primary" : null,
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  onClick={() => toggleQuality(word)}
+                >
+                  {word}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -175,9 +98,13 @@ function App() {
               out of this interaction?{" "}
               <em>
                 (I am willing to be:{" "}
-                <span id="qualities_selected">
-                  <strong>Choose 5 from above</strong>
-                </span>
+                {activeQualities.length === 0 ? (
+                  <span id="qualities_selected">
+                    <strong>Choose 5 from above</strong>
+                  </span>
+                ) : (
+                  activeQualities.join(", ")
+                )}
                 )
               </em>
             </li>

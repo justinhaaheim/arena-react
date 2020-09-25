@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 body {
@@ -55,12 +54,13 @@ a {
 
 #qualities ul li {
   list-style: none;
-  margin-bottom: 4px;
+  display: inline-block;
+  margin: 4px;
 }
 
 #qualities ul {
   margin-left: 0;
-  margin-right: 20px;
+  margin-right: 0px;
   float: left;
 }
 
