@@ -65,6 +65,42 @@ function App() {
     [activeQualities]
   );
 
+  const qualitiesSection = (
+    <ul>
+      {activeQualities.length === MAX_QUALITIES
+        ? activeQualities.map((word) => {
+            const isActive = activeQualities.includes(word);
+            return (
+              <li key={word}>
+                <Button
+                  variant={isActive ? "primary" : "light"}
+                  onClick={() => toggleQuality(word)}
+                >
+                  {word}
+                </Button>
+              </li>
+            );
+          })
+        : Object.values(QUALITIES)
+            .filter((word) => !activeQualities.includes(word))
+            .map((word) => {
+              const isActive = activeQualities.includes(word);
+              return (
+                <li key={word}>
+                  <Button
+                    variant={isActive ? "primary" : "light"}
+                    onClick={() => toggleQuality(word)}
+                  >
+                    {word}
+                  </Button>
+                </li>
+              );
+            })}
+    </ul>
+  );
+
+  const isSelectionComplete = activeQualities.length === MAX_QUALITIES;
+
   return (
     <div className="App">
       <div className="container-narrow">
@@ -85,7 +121,7 @@ function App() {
             </Button>
           </h4>
           <ul>
-            {Object.values(QUALITIES).map((word) => {
+            {activeQualities.map((word) => {
               const isActive = activeQualities.includes(word);
               return (
                 <li key={word}>
@@ -99,6 +135,23 @@ function App() {
               );
             })}
           </ul>
+          {!isSelectionComplete && (
+            <ul>
+              {Object.values(QUALITIES).map((word) => {
+                const isActive = activeQualities.includes(word);
+                return (
+                  <li key={word}>
+                    <Button
+                      variant={isActive ? "secondary" : "light"}
+                      onClick={() => toggleQuality(word)}
+                    >
+                      {word}
+                    </Button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
 
         <div id="questions">
@@ -106,7 +159,8 @@ function App() {
           <ol>
             <li>
               Who am I willing to be in order to produce an extraordinary result
-              out of this interaction?{" "}
+              out of this interaction?
+              <br />
               <em>
                 (I am willing to be:{" "}
                 {activeQualities.length === 0 ? (
