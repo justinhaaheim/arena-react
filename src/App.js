@@ -2,7 +2,8 @@
 
 import React from "react";
 import "./App.css";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useLayoutEffect } from "react";
+import ls from "local-storage";
 
 const QUALITIES = {
   alert: "Alert",
@@ -33,12 +34,22 @@ const QUALITIES = {
 const MAX_QUALITIES = 5;
 
 function App() {
-  React.useEffect(() => {
-    console.log("Yoooo!");
-  });
-
   const [activeQualities, setActiveQualities] = useState<Array<string>>([]);
   console.log(activeQualities);
+
+  // Load qualities on initial load
+  useLayoutEffect(() => {
+    const qualities = ls.get("activeQualities");
+    console.log("Qualities from local storage:", qualities);
+    if (qualities != null && qualities.length > 0) {
+      setActiveQualities(qualities);
+    }
+  }, []);
+
+  useEffect(() => {
+    // TODO: Throttle this?
+    ls.set("activeQualities", activeQualities);
+  }, [activeQualities]);
 
   const toggleQuality = useCallback(
     (word) => {
@@ -77,7 +88,7 @@ function App() {
                 <button
                   className={[
                     "btn",
-                    activeQualities.includes(word) ? "btn-primary" : null,
+                    activeQualities.includes(word) ? "btn-primary active" : null,
                   ]
                     .filter(Boolean)
                     .join(" ")}
