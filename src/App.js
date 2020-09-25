@@ -101,7 +101,7 @@ function App() {
           </ul>
         </div>
 
-        <div id="questions" className="clear">
+        <div id="questions">
           <h4>Arena Questions</h4>
           <ol>
             <li>

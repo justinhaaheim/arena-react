@@ -5,11 +5,14 @@
 body {
   padding-top: 20px;
   padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .masthead h1 {
   font-weight: 700;
   color: #134f5c;
+  margin-top: 10px;
 }
 
 /* Custom container */
@@ -31,7 +34,7 @@ body {
 }
 
 #clear_qualities {
-  margin-left: 5em;
+  margin-left: 1em;
 }
 
 #qualities ul li {
@@ -43,16 +46,17 @@ body {
 #qualities ul {
   margin-left: 0;
   margin-right: 0px;
-  float: left;
+  padding-inline-start: 0px;
+}
+
+#questions ol {
+  padding-inline-start: 25px;
 }
 
 #questions ol li {
   margin-bottom: 6px;
 }
 
-.clear {
-  clear: both;
-}
 
 .footer {
   font-size: 0.8em;
