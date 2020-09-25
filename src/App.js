@@ -1,9 +1,10 @@
 // @flow
 
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ls from "local-storage";
+import Button from "react-bootstrap/button";
 
 const QUALITIES = {
   alert: "Alert",
@@ -74,30 +75,29 @@ function App() {
         <div id="qualities">
           <h4>
             Qualities of Being{" "}
-            <button
-              className="btn btn-warning btn-small"
+            <Button
+              variant="warning"
+              size="small"
               id="clear_qualities"
               onClick={() => setActiveQualities([])}
             >
               Reset
-            </button>
+            </Button>
           </h4>
           <ul>
-            {Object.values(QUALITIES).map((word) => (
-              <li key={word}>
-                <button
-                  className={[
-                    "btn",
-                    activeQualities.includes(word) ? "btn-primary active" : null,
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                  onClick={() => toggleQuality(word)}
-                >
-                  {word}
-                </button>
-              </li>
-            ))}
+            {Object.values(QUALITIES).map((word) => {
+              const isActive = activeQualities.includes(word);
+              return (
+                <li key={word}>
+                  <Button
+                    variant={isActive ? "primary" : "light"}
+                    onClick={() => toggleQuality(word)}
+                  >
+                    {word}
+                  </Button>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -141,8 +141,7 @@ function App() {
 
         <div className="footer">
           <p>
-            Copyright &copy; 1997-
-            <script>document.write(new Date().getFullYear());</script>{" "}
+            Copyright &copy; 1997-{new Date().getFullYear()}{" "}
             <a href="https://acecoachtraining.com/">
               The Academy for Coaching Excellence
             </a>

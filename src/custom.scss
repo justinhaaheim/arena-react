@@ -1,0 +1,23 @@
+// Custom bootstrap variables:
+
+$theme-colors: (
+  "primary": #134f5c,
+  "warning": #faa732,
+);
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 200;
+
+$enable-gradients: true;
+
+$enable-shadows: true;
+
+$font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$font-size-base: 0.875rem;
+
+$headings-font-family: "Lato";
+
+$h1-font-size: $font-size-base * 2;

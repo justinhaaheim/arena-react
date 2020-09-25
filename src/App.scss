@@ -1,32 +1,14 @@
-.App {
-}
+@import "custom";
+
+@import "~bootstrap/scss/bootstrap";
 
 body {
   padding-top: 20px;
   padding-bottom: 40px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Lato", sans-serif;
-}
-
-body,
-ul,
-li,
-button,
-p,
-span,
-a {
-  font-family: "Open Sans", sans-serif;
-}
-
 .masthead h1 {
-  font-size: 2em;
+  font-weight: 700;
   color: #134f5c;
 }
 
@@ -70,21 +52,6 @@ a {
 
 .clear {
   clear: both;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-.btn-primary[disabled] {
-  color: white;
-  background-color: #134f5c;
-  background-image: linear-gradient(to bottom, #134f5c, #2a606c);
-  background-position: 0;
-}
-
-.btn-warning {
 }
 
 .footer {
