@@ -17,97 +17,95 @@
  * limitations under the License.
  * ========================================================== */
 
-
-!function( $ ){
-
-  "use strict"
+!(function ($) {
+  "use strict";
 
   /* CSS TRANSITION SUPPORT (https://gist.github.com/373874)
    * ======================================================= */
 
-   var transitionEnd
+  var transitionEnd;
 
-   $(document).ready(function () {
+  $(document).ready(function () {
+    $.support.transition = (function () {
+      var thisBody = document.body || document.documentElement,
+        thisStyle = thisBody.style,
+        support =
+          thisStyle.transition !== undefined ||
+          thisStyle.WebkitTransition !== undefined ||
+          thisStyle.MozTransition !== undefined ||
+          thisStyle.MsTransition !== undefined ||
+          thisStyle.OTransition !== undefined;
+      return support;
+    })();
 
-     $.support.transition = (function () {
-       var thisBody = document.body || document.documentElement
-         , thisStyle = thisBody.style
-         , support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined
-       return support
-     })()
+    // set CSS transition event type
+    if ($.support.transition) {
+      transitionEnd = "TransitionEnd";
+      if ($.browser.webkit) {
+        transitionEnd = "webkitTransitionEnd";
+      } else if ($.browser.mozilla) {
+        transitionEnd = "transitionend";
+      } else if ($.browser.opera) {
+        transitionEnd = "oTransitionEnd";
+      }
+    }
+  });
 
-     // set CSS transition event type
-     if ( $.support.transition ) {
-       transitionEnd = "TransitionEnd"
-       if ( $.browser.webkit ) {
-        transitionEnd = "webkitTransitionEnd"
-       } else if ( $.browser.mozilla ) {
-        transitionEnd = "transitionend"
-       } else if ( $.browser.opera ) {
-        transitionEnd = "oTransitionEnd"
-       }
-     }
+  /* ALERT CLASS DEFINITION
+   * ====================== */
 
-   })
-
- /* ALERT CLASS DEFINITION
-  * ====================== */
-
-  var Alert = function ( content, options ) {
-    this.settings = $.extend({}, $.fn.alert.defaults, options)
-    this.$element = $(content)
-      .delegate(this.settings.selector, 'click', this.close)
-  }
+  var Alert = function (content, options) {
+    this.settings = $.extend({}, $.fn.alert.defaults, options);
+    this.$element = $(content).delegate(
+      this.settings.selector,
+      "click",
+      this.close
+    );
+  };
 
   Alert.prototype = {
-
     close: function (e) {
-      var $element = $(this).parent('.alert-message')
+      var $element = $(this).parent(".alert-message");
 
-      e && e.preventDefault()
-      $element.removeClass('in')
+      e && e.preventDefault();
+      $element.removeClass("in");
 
-      function removeElement () {
-        $element.remove()
+      function removeElement() {
+        $element.remove();
       }
 
-      $.support.transition && $element.hasClass('fade') ?
-        $element.bind(transitionEnd, removeElement) :
-        removeElement()
-    }
+      $.support.transition && $element.hasClass("fade")
+        ? $element.bind(transitionEnd, removeElement)
+        : removeElement();
+    },
+  };
 
-  }
+  /* ALERT PLUGIN DEFINITION
+   * ======================= */
 
-
- /* ALERT PLUGIN DEFINITION
-  * ======================= */
-
-  $.fn.alert = function ( options ) {
-
-    if ( options === true ) {
-      return this.data('alert')
+  $.fn.alert = function (options) {
+    if (options === true) {
+      return this.data("alert");
     }
 
     return this.each(function () {
-      var $this = $(this)
+      var $this = $(this);
 
-      if ( typeof options == 'string' ) {
-        return $this.data('alert')[options]()
+      if (typeof options == "string") {
+        return $this.data("alert")[options]();
       }
 
-      $(this).data('alert', new Alert( this, options ))
-
-    })
-  }
+      $(this).data("alert", new Alert(this, options));
+    });
+  };
 
   $.fn.alert.defaults = {
-    selector: '.close'
-  }
+    selector: ".close",
+  };
 
   $(document).ready(function () {
-    new Alert($('body'), {
-      selector: '.alert-message[data-alert] .close'
-    })
-  })
-
-}( window.jQuery || window.ender );
+    new Alert($("body"), {
+      selector: ".alert-message[data-alert] .close",
+    });
+  });
+})(window.jQuery || window.ender);
