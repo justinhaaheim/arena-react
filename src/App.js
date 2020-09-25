@@ -6,27 +6,27 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <div class="container-narrow">
-        <div class="masthead">
-          <h1 class="muted">The Coaching Arena</h1>
+      <div className="container-narrow">
+        <div className="masthead">
+          <h1 className="muted">The Coaching Arena</h1>
         </div>
 
         <div id="qualities">
           <h4>
             Qualities of Being{" "}
-            <button class="btn btn-warning btn-small" id="clear_qualities">
+            <button className="btn btn-warning btn-small" id="clear_qualities">
               Reset
             </button>
           </h4>
           <ul>
             <li>
-              <button class="btn" data-toggle="button" data-quality="alert">
+              <button className="btn" data-toggle="button" data-quality="alert">
                 Alert
               </button>
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="appreciative"
               >
@@ -34,18 +34,18 @@ function App() {
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="attentive">
+              <button className="btn" data-toggle="button" data-quality="attentive">
                 Attentive
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="clear">
+              <button className="btn" data-toggle="button" data-quality="clear">
                 Clear
               </button>
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="compassionate"
               >
@@ -54,7 +54,7 @@ function App() {
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="courageous"
               >
@@ -62,13 +62,13 @@ function App() {
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="creative">
+              <button className="btn" data-toggle="button" data-quality="creative">
                 Creative
               </button>
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="empowering"
               >
@@ -77,7 +77,7 @@ function App() {
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="enthusiastic"
               >
@@ -85,65 +85,65 @@ function App() {
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="flexible">
+              <button className="btn" data-toggle="button" data-quality="flexible">
                 Flexible
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="focused">
+              <button className="btn" data-toggle="button" data-quality="focused">
                 Focused
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="generous">
+              <button className="btn" data-toggle="button" data-quality="generous">
                 Generous
               </button>
             </li>
           </ul>
           <ul>
             <li>
-              <button class="btn" data-toggle="button" data-quality="gentle">
+              <button className="btn" data-toggle="button" data-quality="gentle">
                 Gentle
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="grateful">
+              <button className="btn" data-toggle="button" data-quality="grateful">
                 Grateful
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="joyous">
+              <button className="btn" data-toggle="button" data-quality="joyous">
                 Joyous
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="kind">
+              <button className="btn" data-toggle="button" data-quality="kind">
                 Kind
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="loving">
+              <button className="btn" data-toggle="button" data-quality="loving">
                 Loving
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="open">
+              <button className="btn" data-toggle="button" data-quality="open">
                 Open
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="present">
+              <button className="btn" data-toggle="button" data-quality="present">
                 Present
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="receptive">
+              <button className="btn" data-toggle="button" data-quality="receptive">
                 Receptive
               </button>
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="supportive"
               >
@@ -151,13 +151,13 @@ function App() {
               </button>
             </li>
             <li>
-              <button class="btn" data-toggle="button" data-quality="truthful">
+              <button className="btn" data-toggle="button" data-quality="truthful">
                 Truthful
               </button>
             </li>
             <li>
               <button
-                class="btn"
+                className="btn"
                 data-toggle="button"
                 data-quality="vulnerable"
               >
@@ -167,7 +167,7 @@ function App() {
           </ul>
         </div>
 
-        <div id="questions" class="clear">
+        <div id="questions" className="clear">
           <h4>Arena Questions</h4>
           <ol>
             <li>
@@ -201,7 +201,7 @@ function App() {
           <a href="http://www.SetTheArena.com">www.SetTheArena.com</a>
         </p>
 
-        <div class="footer">
+        <div className="footer">
           <p>
             Copyright &copy; 1997-
             <script>document.write(new Date().getFullYear());</script>{" "}

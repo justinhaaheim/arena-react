@@ -2,37 +2,92 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body,
+ul,
+li,
+button,
+p,
+span,
+a {
+  font-family: "Open Sans", sans-serif;
+}
+
+.masthead h1 {
+  font-size: 2em;
+  color: #134f5c;
+}
+
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.marketing {
+  margin: 60px 0;
+}
+
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+#clear_qualities {
+  margin-left: 5em;
+}
+
+#qualities ul li {
+  list-style: none;
+  margin-bottom: 4px;
+}
+
+#qualities ul {
+  margin-left: 0;
+  margin-right: 20px;
+  float: left;
+}
+
+#questions ol li {
+  margin-bottom: 6px;
+}
+
+.clear {
+  clear: both;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
   color: white;
+  background-color: #134f5c;
+  background-image: linear-gradient(to bottom, #134f5c, #2a606c);
+  background-position: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-warning {
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+  font-size: 0.8em;
+  color: #666;
 }
