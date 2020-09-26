@@ -65,6 +65,38 @@ function App() {
     [activeQualities]
   );
 
+  const qualitiesSection = (
+    <ul>
+      {activeQualities.length === MAX_QUALITIES
+        ? activeQualities.map((word) => {
+            const isActive = activeQualities.includes(word);
+            return (
+              <li key={word}>
+                <Button
+                  variant={isActive ? "primary" : "light"}
+                  onClick={() => toggleQuality(word)}
+                >
+                  {word}
+                </Button>
+              </li>
+            );
+          })
+        : Object.values(QUALITIES).map((word) => {
+            const isActive = activeQualities.includes(word);
+            return (
+              <li key={word}>
+                <Button
+                  variant={isActive ? "primary" : "light"}
+                  onClick={() => toggleQuality(word)}
+                >
+                  {word}
+                </Button>
+              </li>
+            );
+          })}
+    </ul>
+  );
+
   return (
     <div className="App">
       <div className="container-narrow">
@@ -84,21 +116,7 @@ function App() {
               Reset
             </Button>
           </h4>
-          <ul>
-            {Object.values(QUALITIES).map((word) => {
-              const isActive = activeQualities.includes(word);
-              return (
-                <li key={word}>
-                  <Button
-                    variant={isActive ? "primary" : "light"}
-                    onClick={() => toggleQuality(word)}
-                  >
-                    {word}
-                  </Button>
-                </li>
-              );
-            })}
-          </ul>
+          {qualitiesSection}
         </div>
 
         <div id="questions">
