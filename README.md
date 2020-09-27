@@ -37,6 +37,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `npm run deploy`
+
+Use this to deploy to a server environment using FTP.
+
+Create a `.env` file in the room following the template in `.env.template` file.
+
+Run `npm run build` to generate the latest build. Then run `npm run deploy` to upload the specified FTP location.
+
+
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
