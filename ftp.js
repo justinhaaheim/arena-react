@@ -25,7 +25,7 @@ var config = {
 // use with promises
 ftpDeploy
     .deploy(config)
-    .then(res => console.log("finished:", res))
+    // .then(res => console.log("finished:", res))
     .catch(err => console.log(err));
 
 // use with callback
@@ -36,16 +36,14 @@ ftpDeploy
 
 
 ftpDeploy.on("uploading", function (data) {
-    console.log(data.totalFilesCount); // total file count being transferred
-    console.log(data.transferredFileCount); // number of files transferred
-    console.log(data.filename); // partial path with filename being uploaded
+    console.log(data.transferredFileCount + " of " + data.totalFilesCount + ": '" + data.filename + "'");
 });
-ftpDeploy.on("uploaded", function (data) {
-    console.log(data); // same data as uploading event
-});
-ftpDeploy.on("log", function (data) {
-    console.log(data); // same data as uploading event
-});
+// ftpDeploy.on("uploaded", function (data) {
+//     console.log(data); // same data as uploading event
+// });
+// ftpDeploy.on("log", function (data) {
+//     console.log(data); // same data as uploading event
+// });
 ftpDeploy.on("upload-error", function (data) {
     console.log(data.err); // data will also include filename, relativePath, and other goodies
 });
