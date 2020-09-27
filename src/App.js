@@ -36,12 +36,10 @@ const MAX_QUALITIES = 5;
 
 function App() {
   const [activeQualities, setActiveQualities] = useState<Array<string>>([]);
-  console.log(activeQualities);
 
   // Load qualities on initial load
   useLayoutEffect(() => {
     const qualities = ls.get("activeQualities");
-    console.log("Qualities from local storage:", qualities);
     if (qualities != null && qualities.length > 0) {
       setActiveQualities(qualities);
     }
