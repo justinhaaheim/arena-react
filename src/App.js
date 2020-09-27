@@ -92,6 +92,7 @@ function App() {
                   <Button
                     variant={isActive ? "primary" : "light"}
                     onClick={() => toggleQuality(word)}
+                    disabled={isMaxQualities && !isActive}
                   >
                     {word}
                   </Button>
