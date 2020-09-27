@@ -65,6 +65,8 @@ function App() {
     [activeQualities]
   );
 
+  const isMaxQualities = activeQualities.length >= MAX_QUALITIES;
+
   return (
     <div className="App">
       <div className="container-narrow">
@@ -109,14 +111,17 @@ function App() {
               out of this interaction?{" "}
               <em>
                 (I am willing to be:{" "}
-                {activeQualities.length > 0 && 
-                  <span id="qualities_selected">
-                    {activeQualities.join(", ")} 
-                    {activeQualities.length < 5 && 
-                      <strong> — Choose {(5-activeQualities.length)} more {5-activeQualities.length > 1 ? 'qualities' : 'quality'} from above</strong>
-                    }
-                  </span>
-                }
+                <span id="qualities_selected">
+                  {activeQualities.join(", ")}
+                  {!isMaxQualities && (
+                    <strong>
+                      {" "}
+                      — Choose {5 - activeQualities.length} more{" "}
+                      {5 - activeQualities.length > 1 ? "qualities" : "quality"}{" "}
+                      from above
+                    </strong>
+                  )}
+                </span>
                 )
               </em>
             </li>
