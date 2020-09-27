@@ -77,7 +77,7 @@ function App() {
             Qualities of Being{" "}
             <Button
               variant="warning"
-              size="small"
+              size="sm"
               id="clear_qualities"
               onClick={() => setActiveQualities([])}
             >
@@ -93,6 +93,7 @@ function App() {
                     variant={isActive ? "primary" : "light"}
                     onClick={() => toggleQuality(word)}
                     disabled={isMaxQualities && !isActive}
+                    size="sm"
                   >
                     {word}
                   </Button>
