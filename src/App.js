@@ -52,7 +52,6 @@ function App() {
 
   const toggleQuality = useCallback(
     (word) => {
-      document.activeElement.classList.remove("hasactive");
       document.activeElement.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
