@@ -32,6 +32,23 @@ const QUALITIES = {
   vulnerable: "Vulnerable",
 };
 
+const QUESTIONS = {
+  full: {
+    1: "Who am I willing to be in order to produce an extraordinary result out of this interaction?",
+    2: "Am I willing to systematically dismantle my structure of knowing?",
+    3: "Am I willing to be a demand for coaching?",
+    4: "Am I willing to guarantee that whoever coaches me will be successful?"
+  },
+  basic: {
+    1: "There are some qualities I am willing to demonstrate in this interaction so we can both make sure we have an extraordinary result out of our session together:",
+    2: "During the session am I willing to set aside the opinions, beliefs, and thoughts that may be getting in the way of seeing something clearly?",
+    3: "Am I willing to be open-minded and fully engaged in order to receive maximum benefit from this time together?",
+    4: "The result of coaching in this model is always action. Am I willing to see the most authentic action to take? If I am the person being coached, am I willing to take it?"
+  }
+};
+
+const activeQuestions = QUESTIONS['full'];
+
 const MAX_QUALITIES = 5;
 
 function App() {
@@ -109,8 +126,7 @@ function App() {
           <h4>Arena Questions</h4>
           <ol>
             <li>
-              Who am I willing to be in order to produce an extraordinary result
-              out of this interaction?{" "}
+              {activeQuestions[1]}{" "}
               <em>
                 (I am willing to be:{" "}
                 <span id="qualities_selected">
@@ -128,16 +144,16 @@ function App() {
               </em>
             </li>
             <li>
-              Am I willing to systematically dismantle my structure of knowing?{" "}
+              {activeQuestions[2]}{" "}
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              Am I willing to be a demand for coaching?{" "}
+              {activeQuestions[3]}{" "}
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              Am I willing to guarantee that whoever coaches me will be
-              successful? <em>('Yes' or 'No')</em>
+              {activeQuestions[4]}{" "}
+              <em>('Yes' or 'No')</em>
             </li>
           </ol>
         </div>
