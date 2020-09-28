@@ -116,8 +116,11 @@ function App() {
                   {!isMaxQualities && (
                     <strong>
                       {" "}
-                      — Choose {MAX_QUALITIES - activeQualities.length} more{" "}
-                      {MAX_QUALITIES - activeQualities.length > 1 ? "qualities" : "quality"}{" "}
+                      — Choose {MAX_QUALITIES -
+                        activeQualities.length} more{" "}
+                      {MAX_QUALITIES - activeQualities.length > 1
+                        ? "qualities"
+                        : "quality"}{" "}
                       from above
                     </strong>
                   )}
