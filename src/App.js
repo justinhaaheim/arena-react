@@ -127,15 +127,15 @@ function App() {
             </li>
             <li>
               Am I willing to systematically dismantle my structure of knowing?{" "}
-              <em>(Choose 'Yes' or 'No')</em>
+              <em>('Yes' or 'No')</em>
             </li>
             <li>
               Am I willing to be a demand for coaching?{" "}
-              <em>(Choose 'Yes' or 'No')</em>
+              <em>('Yes' or 'No')</em>
             </li>
             <li>
               Am I willing to guarantee that whoever coaches me will be
-              successful? <em>(Choose 'Yes' or 'No')</em>
+              successful? <em>('Yes' or 'No')</em>
             </li>
           </ol>
         </div>
