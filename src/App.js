@@ -154,7 +154,7 @@ function App() {
           <p>
             Copyright &copy; 1997-{new Date().getFullYear()}{" "}
             <a href="https://acecoachtraining.com/">
-              The Academy for Coaching Excellence
+              Academy for Coaching Excellence
             </a>
           </p>
         </div>
