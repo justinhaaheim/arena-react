@@ -7,39 +7,42 @@ import ls from "local-storage";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
 
-const QUALITIES = {
-  alert: "Alert",
-  appreciative: "Appreciative",
-  attentive: "Attentive",
-  clear: "Clear",
-  compassionate: "Compassionate",
-  courageous: "Courageous",
-  creative: "Creative",
-  empowering: "Empowering",
-  enthusiastic: "Enthusiastic",
-  flexible: "Flexible",
-  focused: "Focused",
-  generous: "Generous",
-  gentle: "Gentle",
-  grateful: "Grateful",
-  joyous: "Joyous",
-  kind: "Kind",
-  loving: "Loving",
-  open: "Open",
-  present: "Present",
-  receptive: "Receptive",
-  supportive: "Supportive",
-  truthful: "Truthful",
-  vulnerable: "Vulnerable",
-};
+const QUALITIES: $ReadOnlyArray<string> = [
+  "Alert",
+  "Appreciative",
+  "Attentive",
+  "Clear",
+  "Compassionate",
+  "Courageous",
+  "Creative",
+  "Empowering",
+  "Enthusiastic",
+  "Flexible",
+  "Focused",
+  "Generous",
+  "Gentle",
+  "Grateful",
+  "Joyous",
+  "Kind",
+  "Loving",
+  "Open",
+  "Present",
+  "Receptive",
+  "Supportive",
+  "Truthful",
+  "Vulnerable",
+];
 
 const MAX_QUALITIES = 5;
 
-function App() {
-  const [activeQualities, setActiveQualities] = useState<Array<string>>([]);
+function App(): React$MixedElement {
+  const [activeQualities, setActiveQualities] = useState<
+    $ReadOnlyArray<string>
+  >([]);
 
   // Load qualities on initial load
   useLayoutEffect(() => {
+    const q = activeQualities;
     const qualities = ls.get("activeQualities");
     if (qualities != null && qualities.length > 0) {
       setActiveQualities(qualities);
@@ -52,8 +55,8 @@ function App() {
   }, [activeQualities]);
 
   const toggleQuality = useCallback(
-    (word) => {
-      document.activeElement.blur();
+    (word: string): void => {
+      document.activeElement?.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
       } else {
@@ -87,7 +90,7 @@ function App() {
             </Button>
           </h4>
           <ul>
-            {Object.values(QUALITIES).map((word) => {
+            {QUALITIES.map((word) => {
               const isActive = activeQualities.includes(word);
               return (
                 <li key={word}>
@@ -103,9 +106,14 @@ function App() {
               );
             })}
           </ul>
-          {!isMaxQualities &&
-            <Alert variant="info">Select {(MAX_QUALITIES - activeQualities.length)} more {MAX_QUALITIES - activeQualities.length > 1 ? 'qualities' : 'quality'}</Alert>
-          }
+          {!isMaxQualities && (
+            <Alert variant="info">
+              Select {MAX_QUALITIES - activeQualities.length} more{" "}
+              {MAX_QUALITIES - activeQualities.length > 1
+                ? "qualities"
+                : "quality"}
+            </Alert>
+          )}
         </div>
 
         <div id="questions">
@@ -138,8 +146,7 @@ function App() {
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              Am I willing to be a demand for coaching?{" "}
-              <em>('Yes' or 'No')</em>
+              Am I willing to be a demand for coaching? <em>('Yes' or 'No')</em>
             </li>
             <li>
               Am I willing to guarantee that whoever coaches me will be
