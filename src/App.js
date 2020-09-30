@@ -59,6 +59,7 @@ function App(): React$MixedElement {
 
   const toggleQuality = useCallback(
     (word: string): void => {
+      // eslint-disable-next-line no-unused-expressions
       document.activeElement?.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
