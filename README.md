@@ -45,8 +45,6 @@ Create a `.env` file in the room following the template in `.env.template` file.
 
 Run `npm run build` to generate the latest build. Then run `npm run deploy` to upload the specified FTP location.
 
-
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
