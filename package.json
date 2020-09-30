@@ -19,14 +19,15 @@
     "react-scripts": "3.4.3"
   },
   "scripts": {
-    "flow": "flow",
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "deploy": "node ftp.js",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write .",
+    "flow": "flow",
+    "lint": "eslint src",
     "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
-    "deploy": "node ftp.js"
+    "prettier": "prettier --write .",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +49,7 @@
     "eslint": "^7.10.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.2",

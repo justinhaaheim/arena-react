@@ -1,8 +1,12 @@
 // @flow
 
-import React from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import "./App.scss";
-import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ls from "local-storage";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
@@ -42,7 +46,6 @@ function App(): React$MixedElement {
 
   // Load qualities on initial load
   useLayoutEffect(() => {
-    const q = activeQualities;
     const qualities = ls.get("activeQualities");
     if (qualities != null && qualities.length > 0) {
       setActiveQualities(qualities);
@@ -59,10 +62,8 @@ function App(): React$MixedElement {
       document.activeElement?.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
-      } else {
-        if (activeQualities.length < MAX_QUALITIES) {
-          setActiveQualities(activeQualities.concat(word));
-        }
+      } else if (activeQualities.length < MAX_QUALITIES) {
+        setActiveQualities(activeQualities.concat(word));
       }
     },
     [activeQualities]
