@@ -4,6 +4,7 @@ import React from "react";
 import "./App.scss";
 import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ls from "local-storage";
+import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
 
 const QUALITIES = {
@@ -102,6 +103,9 @@ function App() {
               );
             })}
           </ul>
+          {!isMaxQualities &&
+            <Alert variant="info">Select {(MAX_QUALITIES - activeQualities.length)} more {MAX_QUALITIES - activeQualities.length > 1 ? 'qualities' : 'quality'}</Alert>
+          }
         </div>
 
         <div id="questions">
@@ -115,12 +119,12 @@ function App() {
                 <span id="qualities_selected">
                   {activeQualities.join(", ")}
                   {!isMaxQualities && (
-                    <strong>
+                    <span>
                       {" "}
                       — Choose {MAX_QUALITIES - activeQualities.length} more{" "}
                       {MAX_QUALITIES - activeQualities.length > 1 ? "qualities" : "quality"}{" "}
                       from above
-                    </strong>
+                    </span>
                   )}
                 </span>
                 )
