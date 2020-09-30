@@ -4,6 +4,7 @@ import React from "react";
 import "./App.scss";
 import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ls from "local-storage";
+import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
 
 const QUALITIES = {
@@ -52,6 +53,7 @@ function App() {
 
   const toggleQuality = useCallback(
     (word) => {
+      document.activeElement.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
       } else {
@@ -101,6 +103,9 @@ function App() {
               );
             })}
           </ul>
+          {!isMaxQualities &&
+            <Alert variant="info">Select {(MAX_QUALITIES - activeQualities.length)} more {MAX_QUALITIES - activeQualities.length > 1 ? 'qualities' : 'quality'}</Alert>
+          }
         </div>
 
         <div id="questions">
@@ -114,7 +119,7 @@ function App() {
                 <span id="qualities_selected">
                   {activeQualities.join(", ")}
                   {!isMaxQualities && (
-                    <strong>
+                    <span>
                       {" "}
                       — Choose {MAX_QUALITIES -
                         activeQualities.length} more{" "}
@@ -122,7 +127,7 @@ function App() {
                         ? "qualities"
                         : "quality"}{" "}
                       from above
-                    </strong>
+                    </span>
                   )}
                 </span>
                 )
@@ -130,15 +135,15 @@ function App() {
             </li>
             <li>
               Am I willing to systematically dismantle my structure of knowing?{" "}
-              <em>(Choose 'Yes' or 'No')</em>
+              <em>('Yes' or 'No')</em>
             </li>
             <li>
               Am I willing to be a demand for coaching?{" "}
-              <em>(Choose 'Yes' or 'No')</em>
+              <em>('Yes' or 'No')</em>
             </li>
             <li>
               Am I willing to guarantee that whoever coaches me will be
-              successful? <em>(Choose 'Yes' or 'No')</em>
+              successful? <em>('Yes' or 'No')</em>
             </li>
           </ol>
         </div>
@@ -152,7 +157,7 @@ function App() {
           <p>
             Copyright &copy; 1997-{new Date().getFullYear()}{" "}
             <a href="https://acecoachtraining.com/">
-              The Academy for Coaching Excellence
+              Academy for Coaching Excellence
             </a>
           </p>
         </div>
