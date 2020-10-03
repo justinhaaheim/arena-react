@@ -100,7 +100,6 @@ function App(): React$MixedElement {
                     variant={isActive ? "primary" : "light"}
                     onClick={() => toggleQuality(word)}
                     disabled={isMaxQualities && !isActive}
-                    size="sm"
                   >
                     {word}
                   </Button>
