@@ -5,12 +5,12 @@ import "./VerticalButtons.react.scss";
 import Button from "react-bootstrap/Button";
 
 type Props = {|
-  words: $ReadOnlyArray<string>,
-  fillLength: number,
+  words: $ReadOnlyArray < string >,
+    fillLength: number,
 |};
 
 function VerticalButtons({ words, fillLength }: Props): React.MixedElement {
-  const fillerArray = [...Array(fillLength - words.length)].map((_) => "...");
+  const fillerArray = [...Array(fillLength - words.length)].map((_) => "(select from above)");
   const wordsWithFill = words.concat(fillerArray);
 
   console.log({ words, fillerArray });

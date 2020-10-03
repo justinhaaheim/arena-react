@@ -1,43 +1,49 @@
 // @flow
 
-import React from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import "./App.scss";
-import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ls from "local-storage";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
 import VerticalButtons from "./VerticalButtons.react";
 
-const QUALITIES = {
-  alert: "Alert",
-  appreciative: "Appreciative",
-  attentive: "Attentive",
-  clear: "Clear",
-  compassionate: "Compassionate",
-  courageous: "Courageous",
-  creative: "Creative",
-  empowering: "Empowering",
-  enthusiastic: "Enthusiastic",
-  flexible: "Flexible",
-  focused: "Focused",
-  generous: "Generous",
-  gentle: "Gentle",
-  grateful: "Grateful",
-  joyous: "Joyous",
-  kind: "Kind",
-  loving: "Loving",
-  open: "Open",
-  present: "Present",
-  receptive: "Receptive",
-  supportive: "Supportive",
-  truthful: "Truthful",
-  vulnerable: "Vulnerable",
-};
+const QUALITIES: $ReadOnlyArray<string> = [
+  "Alert",
+  "Appreciative",
+  "Attentive",
+  "Clear",
+  "Compassionate",
+  "Courageous",
+  "Creative",
+  "Empowering",
+  "Enthusiastic",
+  "Flexible",
+  "Focused",
+  "Generous",
+  "Gentle",
+  "Grateful",
+  "Joyous",
+  "Kind",
+  "Loving",
+  "Open",
+  "Present",
+  "Receptive",
+  "Supportive",
+  "Truthful",
+  "Vulnerable",
+];
 
 const MAX_QUALITIES = 5;
 
-function App(): React.MixedElement {
-  const [activeQualities, setActiveQualities] = useState<Array<string>>([]);
+function App(): React$MixedElement {
+  const [activeQualities, setActiveQualities] = useState<
+    $ReadOnlyArray<string>
+  >([]);
 
   // Load qualities on initial load
   useLayoutEffect(() => {
@@ -53,14 +59,13 @@ function App(): React.MixedElement {
   }, [activeQualities]);
 
   const toggleQuality = useCallback(
-    (word) => {
-      document.activeElement.blur();
+    (word: string): void => {
+      // eslint-disable-next-line no-unused-expressions
+      document.activeElement?.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
-      } else {
-        if (activeQualities.length < MAX_QUALITIES) {
-          setActiveQualities(activeQualities.concat(word));
-        }
+      } else if (activeQualities.length < MAX_QUALITIES) {
+        setActiveQualities(activeQualities.concat(word));
       }
     },
     [activeQualities]
@@ -88,7 +93,7 @@ function App(): React.MixedElement {
             </Button>
           </h4>
           <ul>
-            {Object.values(QUALITIES).map((word) => {
+            {QUALITIES.map((word) => {
               const isActive = activeQualities.includes(word);
               return (
                 <li key={word}>
