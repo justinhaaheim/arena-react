@@ -35,7 +35,7 @@ function VerticalButtons({ words, fillLength }: Props): React.MixedElement {
           <strong>
             Select {fillLength - wordsWithFill.length} more{" "}
             {fillLength - wordsWithFill.length > 1 ? "qualities" : "quality"}{" "}
-            from the list above above
+            from the list above
           </strong>
         </li>
       )}
