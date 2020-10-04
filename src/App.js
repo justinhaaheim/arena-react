@@ -169,7 +169,7 @@ function App() {
 
         <hr />
         <p>
-          <a href="http://www.SetTheArena.com">www.SetTheArena.com</a>
+          <em>SetTheArena.com: <a href="/">Full Arena</a> • <a href="/?basic">Basic Arena</a></em>
         </p>
 
         <div className="footer">
