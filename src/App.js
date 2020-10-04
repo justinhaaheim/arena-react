@@ -47,7 +47,16 @@ const QUESTIONS = {
   }
 };
 
-const activeQuestions = QUESTIONS['full'];
+function getArenaType() {
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.get('basic');
+  return urlParams.get('basic')==="" ? 'basic' : 'full';
+}
+
+const arenaType = getArenaType();
+// console.log(questionType);
+
+const activeQuestions = QUESTIONS[arenaType];
 
 const MAX_QUALITIES = 5;
 
