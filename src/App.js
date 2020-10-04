@@ -109,14 +109,6 @@ function App(): React$MixedElement {
               );
             })}
           </ul>
-          {!isMaxQualities && (
-            <Alert variant="info">
-              Select {MAX_QUALITIES - activeQualities.length} more{" "}
-              {MAX_QUALITIES - activeQualities.length > 1
-                ? "qualities"
-                : "quality"}
-            </Alert>
-          )}
         </div>
 
         <div id="questions">
