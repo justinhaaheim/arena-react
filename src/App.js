@@ -48,9 +48,7 @@ const QUESTIONS = {
 };
 
 function getArenaType() {
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.get('basic');
-  return urlParams.get('basic')==="" ? 'basic' : 'full';
+  return window.location.pathname==="/basic" ? 'basic' : 'full';
 }
 
 const arenaType = getArenaType();
@@ -169,7 +167,7 @@ function App() {
 
         <hr />
         <p>
-          <em>SetTheArena.com: <a href="/">Full Arena</a> • <a href="/?basic">Basic Arena</a></em>
+          <em>SetTheArena.com: <a href="/">Full Arena</a> • <a href="/basic">Basic Arena</a></em>
         </p>
 
         <div className="footer">
