@@ -37,16 +37,22 @@ body {
   margin-left: 1em;
 }
 
-#qualities ul li {
-  list-style: none;
-  display: inline-block;
-  margin: 7px 5px;
-}
-
 #qualities ul {
   margin-left: 0;
   margin-right: 0px;
   padding-inline-start: 0px;
+
+  li {
+    list-style: none;
+    display: inline-block;
+    margin: 7px 5px;
+
+    $mynewcolor:#f9f9f9;
+
+    .btn-light {
+        @include button-variant($mynewcolor, darken($mynewcolor, 7.5%), darken($mynewcolor, 10%), lighten($mynewcolor,5%), lighten($mynewcolor, 10%), darken($mynewcolor,30%));
+    }
+  }
 }
 
 #questions ol {
