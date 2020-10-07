@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import "./App.scss";
 import ls from "local-storage";
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
 import VerticalButtons from "./VerticalButtons.react";
 
@@ -37,6 +36,30 @@ const QUALITIES: $ReadOnlyArray<string> = [
   "Truthful",
   "Vulnerable",
 ];
+
+const QUESTIONS = {
+  full: {
+    1: "Who am I willing to be in order to produce an extraordinary result out of this interaction?",
+    2: "Am I willing to systematically dismantle my structure of knowing?",
+    3: "Am I willing to be a demand for coaching?",
+    4: "Am I willing to guarantee that whoever coaches me will be successful?",
+  },
+  basic: {
+    1: "There are some qualities I am willing to demonstrate in this interaction so we can both make sure we have an extraordinary result out of our session together:",
+    2: "During the session am I willing to set aside the opinions, beliefs, and thoughts that may be getting in the way of seeing something clearly?",
+    3: "Am I willing to be open-minded and fully engaged in order to receive maximum benefit from this time together?",
+    4: "The result of coaching in this model is always action. Am I willing to see the most authentic action to take? If I am the person being coached, am I willing to take it?",
+  },
+};
+
+function getArenaType() {
+  return window.location.pathname === "/basic" ? "basic" : "full";
+}
+
+const arenaType = getArenaType();
+// console.log(questionType);
+
+const activeQuestions = QUESTIONS[arenaType];
 
 const MAX_QUALITIES = 5;
 
@@ -114,10 +137,7 @@ function App(): React$MixedElement {
           <h4>Arena Questions</h4>
           <ol>
             <li>
-              <p>
-                Who am I willing to be in order to produce an extraordinary
-                result out of this interaction?
-              </p>
+              <p>{activeQuestions[1]} </p>
               <p>
                 <em>I am willing to be:</em>
               </p>
@@ -129,18 +149,17 @@ function App(): React$MixedElement {
               </div>
             </li>
             <li>
-              Am I willing to systematically dismantle my structure of knowing?{" "}
+              {activeQuestions[2]}
               <br />
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              Am I willing to be a demand for coaching?
+              {activeQuestions[3]}
               <br />
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              Am I willing to guarantee that whoever coaches me will be
-              successful?
+              {activeQuestions[4]}
               <br />
               <em>('Yes' or 'No')</em>
             </li>
@@ -149,7 +168,10 @@ function App(): React$MixedElement {
 
         <hr />
         <p>
-          <a href="http://www.SetTheArena.com">www.SetTheArena.com</a>
+          <em>
+            SetTheArena.com: <a href="/">Full Arena</a> • 
+            <a href="/basic">Basic Arena</a>
+          </em>
         </p>
 
         <div className="footer">
