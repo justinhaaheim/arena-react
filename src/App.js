@@ -44,7 +44,7 @@ const QUESTIONS = {
     3: "Am I willing to be a demand for coaching?",
     4: "Am I willing to guarantee that whoever coaches me will be successful?",
   },
-  basic: {
+  client: {
     1: "There are some qualities I am willing to demonstrate in this interaction so we can both make sure we have an extraordinary result out of our session together:",
     2: "During the session am I willing to set aside the opinions, beliefs, and thoughts that may be getting in the way of seeing something clearly?",
     3: "Am I willing to be open-minded and fully engaged in order to receive maximum benefit from this time together?",
@@ -53,7 +53,7 @@ const QUESTIONS = {
 };
 
 function getArenaType() {
-  return window.location.pathname === "/basic" ? "basic" : "full";
+  return window.location.pathname === "/client" ? "client" : "full";
 }
 
 const arenaType = getArenaType();
@@ -169,8 +169,8 @@ function App(): React$MixedElement {
         <hr />
         <p>
           <em>
-            SetTheArena.com: <a href="/">Full Arena</a> • 
-            <a href="/basic">Basic Arena</a>
+            SetTheArena.com: <a href="/">Main Arena</a> • 
+            <a href="/client">Client Arena</a>
           </em>
         </p>
 
