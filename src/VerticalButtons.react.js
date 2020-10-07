@@ -22,12 +22,7 @@ function VerticalButtons({ words, fillLength }: Props): React.MixedElement {
     <ul className="verticalButtons-list">
       {wordsWithFill.map((word, index) => (
         <li key={index}>
-          <Button
-            children={word}
-            variant={"outline-primary"}
-            disabled={true}
-            size="sm"
-          />
+          <Button children={word} variant={"outline-primary"} disabled={true} />
         </li>
       ))}
       {wordsWithFill.length < fillLength && (
