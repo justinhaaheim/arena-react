@@ -8,8 +8,8 @@ import React, {
 } from "react";
 import "./App.scss";
 import ls from "local-storage";
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/button";
+import VerticalButtons from "./VerticalButtons.react";
 
 const QUALITIES: $ReadOnlyArray<string> = [
   "Alert",
@@ -124,7 +124,6 @@ function App(): React$MixedElement {
                     variant={isActive ? "primary" : "light"}
                     onClick={() => toggleQuality(word)}
                     disabled={isMaxQualities && !isActive}
-                    size="sm"
                   >
                     {word}
                   </Button>
@@ -132,48 +131,37 @@ function App(): React$MixedElement {
               );
             })}
           </ul>
-          {!isMaxQualities && (
-            <Alert variant="info">
-              Select {MAX_QUALITIES - activeQualities.length} more{" "}
-              {MAX_QUALITIES - activeQualities.length > 1
-                ? "qualities"
-                : "quality"}
-            </Alert>
-          )}
         </div>
 
         <div id="questions">
           <h4>Arena Questions</h4>
           <ol>
             <li>
-              {activeQuestions[1]}{" "}
-              <em>
-                (I am willing to be:{" "}
-                <span id="qualities_selected">
-                  {activeQualities.join(", ")}
-                  {!isMaxQualities && (
-                    <span>
-                      {" "}
-                      — Choose {MAX_QUALITIES -
-                        activeQualities.length} more{" "}
-                      {MAX_QUALITIES - activeQualities.length > 1
-                        ? "qualities"
-                        : "quality"}{" "}
-                      from above
-                    </span>
-                  )}
-                </span>
-                )
-              </em>
+              <p>{activeQuestions[1]} </p>
+              <p>
+                <em>I am willing to be:</em>
+              </p>
+              <div style={{ marginBottom: 12 }}>
+                <VerticalButtons
+                  words={activeQualities}
+                  fillLength={MAX_QUALITIES}
+                />
+              </div>
             </li>
             <li>
-              {activeQuestions[2]} <em>('Yes' or 'No')</em>
+              {activeQuestions[2]}
+              <br />
+              <em>('Yes' or 'No')</em>
             </li>
             <li>
-              {activeQuestions[3]} <em>('Yes' or 'No')</em>
+              {activeQuestions[3]}
+              <br />
+              <em>('Yes' or 'No')</em>
             </li>
             <li>
-              {activeQuestions[4]} <em>('Yes' or 'No')</em>
+              {activeQuestions[4]}
+              <br />
+              <em>('Yes' or 'No')</em>
             </li>
           </ol>
         </div>
