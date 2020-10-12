@@ -3,6 +3,7 @@
 import React from "react";
 import "./VerticalButtons.react.scss";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 
 type Props = {|
   words: $ReadOnlyArray<string>,
@@ -27,11 +28,14 @@ function VerticalButtons({ words, fillLength }: Props): React.MixedElement {
       ))}
       {wordsWithFill.length < fillLength && (
         <li>
-          <strong>
-            Select {fillLength - wordsWithFill.length} more{" "}
-            {fillLength - wordsWithFill.length > 1 ? "qualities" : "quality"}{" "}
+          <Alert variant="warning">
+            Select{" "}
+            <strong>
+              {fillLength - wordsWithFill.length} more{" "}
+              {fillLength - wordsWithFill.length > 1 ? "qualities" : "quality"}{" "}
+            </strong>
             from the list above
-          </strong>
+          </Alert>
         </li>
       )}
     </ul>

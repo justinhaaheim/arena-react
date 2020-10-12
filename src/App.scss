@@ -56,11 +56,21 @@ body {
 }
 
 #questions ol {
+  font-weight: bold;
   padding-inline-start: 25px;
+  // Make all sub elements not bold
+  em, ul {
+    font-weight: normal;
+  }
 }
 
 #questions ol li {
   margin-bottom: 6px;
+
+  .alert {
+    display: inline-block;
+  }
+
 }
 
 .footer {

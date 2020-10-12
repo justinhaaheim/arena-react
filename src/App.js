@@ -137,7 +137,7 @@ function App(): React$MixedElement {
           <h4>Arena Questions</h4>
           <ol>
             <li>
-              <p>{activeQuestions[1]} </p>
+              <span className="question">{activeQuestions[1]}</span>
               <p>
                 <em>I am willing to be:</em>
               </p>
@@ -149,17 +149,17 @@ function App(): React$MixedElement {
               </div>
             </li>
             <li>
-              {activeQuestions[2]}
+              <span className="question">{activeQuestions[2]}</span>
               <br />
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              {activeQuestions[3]}
+              <span className="question">{activeQuestions[3]}</span>
               <br />
               <em>('Yes' or 'No')</em>
             </li>
             <li>
-              {activeQuestions[4]}
+              <span className="question">{activeQuestions[4]}</span>
               <br />
               <em>('Yes' or 'No')</em>
             </li>
