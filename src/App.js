@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useLayoutEffect,
 } from "react";
+import { Helmet } from "react-helmet";
 import "./App.scss";
 import ls from "local-storage";
 import Button from "react-bootstrap/button";
@@ -98,6 +99,12 @@ function App(): React$MixedElement {
 
   return (
     <div className="App">
+      <Helmet>
+        <meta charSet="utf-8" />
+        {/* manifest.json provides metadata used when your web app is installed on a
+          user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/ */}
+        <link rel="manifest" href={"/manifest-" + arenaType + ".json"} />
+      </Helmet>
       <div className="container-narrow">
         <div className="masthead">
           <h1 className="muted">The Coaching Arena</h1>
@@ -169,7 +176,7 @@ function App(): React$MixedElement {
         <hr />
         <p>
           <em>
-            SetTheArena.com: <a href="/">Main Arena</a> • 
+            SetTheArena.com: <a href="/">Main Arena</a> •{" "}
             <a href="/client">Client Arena</a>
           </em>
         </p>

@@ -17,7 +17,7 @@ function VerticalButtons({ words, fillLength }: Props): React.MixedElement {
 
   // console.log({ words, fillerArray });
 
-  console.log({ fillLength, wordsLength: words.length });
+  // console.log({ fillLength, wordsLength: words.length });
 
   return (
     <ul className="verticalButtons-list">
