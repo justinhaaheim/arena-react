@@ -157,18 +157,12 @@ function App(): React$MixedElement {
             </li>
             <li>
               <span className="question">{activeQuestions[2]}</span>
-              <br />
-              <em>'Yes'</em>
             </li>
             <li>
               <span className="question">{activeQuestions[3]}</span>
-              <br />
-              <em>'Yes'</em>
             </li>
             <li>
               <span className="question">{activeQuestions[4]}</span>
-              <br />
-              <em>'Yes'</em>
             </li>
           </ol>
         </div>
