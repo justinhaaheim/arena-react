@@ -1,47 +1,77 @@
 // @flow
 
-import React from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+} from "react";
+import { Helmet } from "react-helmet";
 import "./App.scss";
-import { useState, useCallback, useEffect, useLayoutEffect } from "react";
 import ls from "local-storage";
 import Button from "react-bootstrap/button";
+import VerticalButtons from "./VerticalButtons.react";
 
-const QUALITIES = {
-  alert: "Alert",
-  appreciative: "Appreciative",
-  attentive: "Attentive",
-  clear: "Clear",
-  compassionate: "Compassionate",
-  courageous: "Courageous",
-  creative: "Creative",
-  empowering: "Empowering",
-  enthusiastic: "Enthusiastic",
-  flexible: "Flexible",
-  focused: "Focused",
-  generous: "Generous",
-  gentle: "Gentle",
-  grateful: "Grateful",
-  joyous: "Joyous",
-  kind: "Kind",
-  loving: "Loving",
-  open: "Open",
-  present: "Present",
-  receptive: "Receptive",
-  supportive: "Supportive",
-  truthful: "Truthful",
-  vulnerable: "Vulnerable",
+const QUALITIES: $ReadOnlyArray<string> = [
+  "Alert",
+  "Appreciative",
+  "Attentive",
+  "Clear",
+  "Compassionate",
+  "Courageous",
+  "Creative",
+  "Empowering",
+  "Enthusiastic",
+  "Flexible",
+  "Focused",
+  "Generous",
+  "Gentle",
+  "Grateful",
+  "Joyous",
+  "Kind",
+  "Loving",
+  "Open",
+  "Present",
+  "Receptive",
+  "Supportive",
+  "Truthful",
+  "Vulnerable",
+];
+
+const QUESTIONS = {
+  full: {
+    1: "Who am I willing to be in order to produce an extraordinary result out of this interaction?",
+    2: "Am I willing to systematically dismantle my structure of knowing?",
+    3: "Am I willing to be a demand for coaching?",
+    4: "Am I willing to guarantee that whoever coaches me will be successful?",
+  },
+  client: {
+    1: "There are some qualities I am willing to demonstrate in this interaction so we can both make sure we have an extraordinary result out of our session together:",
+    2: "During the session am I willing to set aside the opinions, beliefs, and thoughts that may be getting in the way of seeing something clearly?",
+    3: "Am I willing to be open-minded and fully engaged in order to receive maximum benefit from this time together?",
+    4: "The result of coaching in this model is always action. Am I willing to see the most authentic action to take? If I am the person being coached, am I willing to take it?",
+  },
 };
+
+function getArenaType() {
+  return window.location.pathname === "/client" ? "client" : "full";
+}
+
+const arenaType = getArenaType();
+// console.log(questionType);
+
+const activeQuestions = QUESTIONS[arenaType];
 
 const MAX_QUALITIES = 5;
 
-function App() {
-  const [activeQualities, setActiveQualities] = useState<Array<string>>([]);
-  console.log(activeQualities);
+function App(): React$MixedElement {
+  const [activeQualities, setActiveQualities] = useState<
+    $ReadOnlyArray<string>
+  >([]);
 
   // Load qualities on initial load
   useLayoutEffect(() => {
     const qualities = ls.get("activeQualities");
-    console.log("Qualities from local storage:", qualities);
     if (qualities != null && qualities.length > 0) {
       setActiveQualities(qualities);
     }
@@ -53,20 +83,28 @@ function App() {
   }, [activeQualities]);
 
   const toggleQuality = useCallback(
-    (word) => {
+    (word: string): void => {
+      // eslint-disable-next-line no-unused-expressions
+      document.activeElement?.blur();
       if (activeQualities.includes(word)) {
         setActiveQualities(activeQualities.filter((w) => w !== word));
-      } else {
-        if (activeQualities.length < MAX_QUALITIES) {
-          setActiveQualities(activeQualities.concat(word));
-        }
+      } else if (activeQualities.length < MAX_QUALITIES) {
+        setActiveQualities(activeQualities.concat(word));
       }
     },
     [activeQualities]
   );
 
+  const isMaxQualities = activeQualities.length >= MAX_QUALITIES;
+
   return (
     <div className="App">
+      <Helmet>
+        <meta charSet="utf-8" />
+        {/* manifest.json provides metadata used when your web app is installed on a
+          user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/ */}
+        <link rel="manifest" href={"/manifest-" + arenaType + ".json"} />
+      </Helmet>
       <div className="container-narrow">
         <div className="masthead">
           <h1 className="muted">The Coaching Arena</h1>
@@ -77,7 +115,7 @@ function App() {
             Qualities of Being{" "}
             <Button
               variant="warning"
-              size="small"
+              size="sm"
               id="clear_qualities"
               onClick={() => setActiveQualities([])}
             >
@@ -85,13 +123,14 @@ function App() {
             </Button>
           </h4>
           <ul>
-            {Object.values(QUALITIES).map((word) => {
+            {QUALITIES.map((word) => {
               const isActive = activeQualities.includes(word);
               return (
                 <li key={word}>
                   <Button
                     variant={isActive ? "primary" : "light"}
                     onClick={() => toggleQuality(word)}
+                    disabled={isMaxQualities && !isActive}
                   >
                     {word}
                   </Button>
@@ -105,45 +144,42 @@ function App() {
           <h4>Arena Questions</h4>
           <ol>
             <li>
-              Who am I willing to be in order to produce an extraordinary result
-              out of this interaction?{" "}
-              <em>
-                (I am willing to be:{" "}
-                {activeQualities.length === 0 ? (
-                  <span id="qualities_selected">
-                    <strong>Choose 5 from above</strong>
-                  </span>
-                ) : (
-                  activeQualities.join(", ")
-                )}
-                )
-              </em>
+              <span className="question">{activeQuestions[1]}</span>
+              <p>
+                <em>I am willing to be:</em>
+              </p>
+              <div style={{ marginBottom: 12 }}>
+                <VerticalButtons
+                  words={activeQualities}
+                  fillLength={MAX_QUALITIES}
+                />
+              </div>
             </li>
             <li>
-              Am I willing to systematically dismantle my structure of knowing?{" "}
-              <em>(Choose 'Yes' or 'No')</em>
+              <span className="question">{activeQuestions[2]}</span>
             </li>
             <li>
-              Am I willing to be a demand for coaching?{" "}
-              <em>(Choose 'Yes' or 'No')</em>
+              <span className="question">{activeQuestions[3]}</span>
             </li>
             <li>
-              Am I willing to guarantee that whoever coaches me will be
-              successful? <em>(Choose 'Yes' or 'No')</em>
+              <span className="question">{activeQuestions[4]}</span>
             </li>
           </ol>
         </div>
 
         <hr />
         <p>
-          <a href="http://www.SetTheArena.com">www.SetTheArena.com</a>
+          <em>
+            SetTheArena.com: <a href="/">Main Arena</a> •{" "}
+            <a href="/client">Client Arena</a>
+          </em>
         </p>
 
         <div className="footer">
           <p>
             Copyright &copy; 1997-{new Date().getFullYear()}{" "}
             <a href="https://acecoachtraining.com/">
-              The Academy for Coaching Excellence
+              Academy for Coaching Excellence
             </a>
           </p>
         </div>
