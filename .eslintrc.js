@@ -3,13 +3,8 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  parser: "babel-eslint",
-  extends: [
-    "airbnb",
-    "prettier",
-    "prettier/react",
-    "plugin:flowtype/recommended",
-  ],
+  parser: "@babel/eslint-parser",
+  extends: ["airbnb", "plugin:flowtype/recommended", "prettier"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -22,7 +17,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["react", "prettier", "flowtype"],
+  plugins: ["react", "flowtype", "prettier"],
   rules: {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
