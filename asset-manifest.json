@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/arena-react/static/css/main.ee1c7301.css",
+    "main.js": "/arena-react/static/js/main.27628736.js",
+    "index.html": "/arena-react/index.html",
+    "main.ee1c7301.css.map": "/arena-react/static/css/main.ee1c7301.css.map",
+    "main.27628736.js.map": "/arena-react/static/js/main.27628736.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ee1c7301.css",
+    "static/js/main.27628736.js"
+  ]
+}
