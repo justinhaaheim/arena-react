@@ -1,39 +1,66 @@
 {
   "name": "arena-react",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.1.0",
+  "type": "module",
   "homepage": "/",
+  "engines": {
+    "npm": ">=9",
+    "node": ">=21.x"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "deploy": "node ftp.js",
+    "clean:build": "rm -rf build/",
+    "lint:fix": "npm run lint --fix",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+    "prettier-check": "prettier --check .",
+    "prettier": "prettier --write .",
+    "flow": "flow",
+    "ts-check": "tsc --noEmit",
+    "prepare": "husky"
+  },
   "dependencies": {
+    "@emotion/react": "11.11.4",
+    "@emotion/styled": "11.11.5",
+    "@fontsource/inter": "5.0.18",
+    "@mui/icons-material": "5.15.20",
+    "@mui/joy": "5.0.0-beta.36",
+    "@mui/material": "5.15.21",
+    "@types/react-helmet": "^6.1.11",
+    "bootstrap": "^4.6.2",
+    "dotenv": "^8.2.0",
+    "local-storage": "^2.0.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^1.6.8",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "sass": "^1.86.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "bootstrap": "^4.5.2",
-    "dotenv": "^8.2.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "8.2.1",
+    "eslint": "9.22.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-jha-react-node": "github:justinhaaheim/eslint-config-jha-react-node",
     "eslint-config-prettier": "^8.3.0",
     "flow-bin": "^0.134.0",
-    "local-storage": "^2.0.0",
-    "node-sass": "^7.0.1",
+    "ftp-deploy": "^2.3.7",
+    "husky": "9.1.7",
+    "lint-staged": "^14.0.1",
     "onchange": "^7.0.2",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.3.0",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
-    "react-scripts": "^5.0.0"
-  },
-  "scripts": {
-    "build": "react-scripts build",
-    "deploy": "node ftp.js",
-    "eject": "react-scripts eject",
-    "flow": "flow",
-    "lint": "eslint src",
-    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
-    "prettier": "prettier --write .",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "prettier": "3.3.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0"
   },
   "browserslist": {
     "production": [
@@ -47,19 +74,21 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.17.0",
-    "ftp-deploy": "^2.3.7",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "prettier": "^2.1.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+  "overrides": {
+    "eslint-plugin-typescript-sort-keys": {
+      "eslint": "^9.21.0"
+    },
+    "@typescript-eslint/experimental-utils": {
+      "eslint": "^9.21.0"
+    },
+    "@typescript-eslint/utils": {
+      "eslint": "^9.21.0"
     }
   },
   "lint-staged": {
-    "*.{js,css,md,html}": "prettier --write"
+    "**/*": "prettier --check --ignore-unknown",
+    "*.(js|jsx|cjs|ts|tsx)": [
+      "eslint --cache --max-warnings=0"
+    ]
   }
 }

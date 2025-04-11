@@ -1,0 +1,87 @@
+@import "custom";
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: black;
+}
+
+.masthead h1 {
+  font-weight: 700;
+  color: #134f5c;
+  margin-top: 10px;
+}
+
+/* Custom container */
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.marketing {
+  margin: 60px 0;
+}
+
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+#clear_qualities {
+  margin-left: 1em;
+}
+
+#qualities ul {
+  margin-left: 0;
+  margin-right: 0px;
+  padding-inline-start: 0px;
+
+  li {
+    list-style: none;
+    display: inline-block;
+    margin: 7px 5px;
+
+    $mynewcolor: #f9f9f9;
+
+    .btn-light {
+      @include button-variant(
+        $mynewcolor,
+        darken($mynewcolor, 7.5%),
+        darken($mynewcolor, 10%),
+        lighten($mynewcolor, 5%),
+        lighten($mynewcolor, 10%),
+        darken($mynewcolor, 30%)
+      );
+    }
+  }
+}
+
+#questions ol {
+  font-weight: bold;
+  padding-inline-start: 25px;
+  // Make all sub elements not bold
+  em,
+  ul {
+    font-weight: normal;
+  }
+}
+
+#questions ol li {
+  margin-bottom: 6px;
+
+  .alert {
+    display: inline-block;
+  }
+}
+
+.footer {
+  font-size: 0.8em;
+  color: #666;
+}
