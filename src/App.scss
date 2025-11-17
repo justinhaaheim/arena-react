@@ -1,7 +1,3 @@
-@import "custom";
-
-@import "~bootstrap/scss/bootstrap";
-
 body {
   padding-top: 20px;
   padding-bottom: 40px;
@@ -47,19 +43,6 @@ body {
     list-style: none;
     display: inline-block;
     margin: 7px 5px;
-
-    $mynewcolor: #f9f9f9;
-
-    .btn-light {
-      @include button-variant(
-        $mynewcolor,
-        darken($mynewcolor, 7.5%),
-        darken($mynewcolor, 10%),
-        lighten($mynewcolor, 5%),
-        lighten($mynewcolor, 10%),
-        darken($mynewcolor, 30%)
-      );
-    }
   }
 }
 
@@ -75,13 +58,14 @@ body {
 
 #questions ol li {
   margin-bottom: 6px;
-
-  .alert {
-    display: inline-block;
-  }
 }
 
 .footer {
   font-size: 0.8em;
   color: #666;
+}
+
+/* Joy UI custom overrides to match previous styling */
+.muted {
+  color: #777;
 }
