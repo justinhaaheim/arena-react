@@ -2,8 +2,8 @@
 
 import React from 'react';
 import './VerticalButtons.react.scss';
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
+import Button from '@mui/joy/Button';
+import Alert from '@mui/joy/Alert';
 
 type Props = {|
   words: $ReadOnlyArray<string>,
@@ -23,14 +23,14 @@ function VerticalButtons({words, fillLength}: Props): React.MixedElement {
     <ul className="verticalButtons-list">
       {wordsWithFill.map((word) => (
         <li key={word}>
-          <Button variant="outline-primary" disabled>
+          <Button variant="outlined" color="primary" disabled>
             {word}
           </Button>
         </li>
       ))}
       {wordsWithFill.length < fillLength && (
         <li>
-          <Alert variant="warning">
+          <Alert color="warning">
             Select{' '}
             <strong>
               {fillLength - wordsWithFill.length} more{' '}

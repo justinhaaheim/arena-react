@@ -1,60 +1,55 @@
 // @flow
 
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import { Helmet } from "react-helmet";
-import "./App.scss";
-import ls from "local-storage";
-import Button from "react-bootstrap/button";
-import VerticalButtons from "./VerticalButtons.react";
+import React, {useState, useCallback, useEffect, useLayoutEffect} from 'react';
+import {Helmet} from 'react-helmet';
+import './App.scss';
+import ls from 'local-storage';
+import Button from '@mui/joy/Button';
+import VerticalButtons from './VerticalButtons.react';
 
 const QUALITIES: $ReadOnlyArray<string> = [
-  "Alert",
-  "Appreciative",
-  "Attentive",
-  "Clear",
-  "Compassionate",
-  "Courageous",
-  "Creative",
-  "Empowering",
-  "Enthusiastic",
-  "Flexible",
-  "Focused",
-  "Generous",
-  "Gentle",
-  "Grateful",
-  "Joyous",
-  "Kind",
-  "Loving",
-  "Open",
-  "Present",
-  "Receptive",
-  "Supportive",
-  "Truthful",
-  "Vulnerable",
+  'Alert',
+  'Appreciative',
+  'Attentive',
+  'Clear',
+  'Compassionate',
+  'Courageous',
+  'Creative',
+  'Empowering',
+  'Enthusiastic',
+  'Flexible',
+  'Focused',
+  'Generous',
+  'Gentle',
+  'Grateful',
+  'Joyous',
+  'Kind',
+  'Loving',
+  'Open',
+  'Present',
+  'Receptive',
+  'Supportive',
+  'Truthful',
+  'Vulnerable',
 ];
 
 const QUESTIONS = {
   full: {
-    1: "Who am I willing to be in order to produce an extraordinary result out of this interaction?",
-    2: "Am I willing to systematically dismantle my structure of knowing?",
-    3: "Am I willing to be a demand for coaching?",
-    4: "Am I willing to guarantee that whoever coaches me will be successful?",
+    1: 'Who am I willing to be in order to produce an extraordinary result out of this interaction?',
+    2: 'Am I willing to systematically dismantle my structure of knowing?',
+    3: 'Am I willing to be a demand for coaching?',
+    4: 'Am I willing to guarantee that whoever coaches me will be successful?',
   },
   client: {
-    1: "There are some qualities I am willing to demonstrate in this interaction so we can both make sure we have an extraordinary result out of our session together:",
-    2: "During the session am I willing to set aside the opinions, beliefs, and thoughts that may be getting in the way of seeing something clearly?",
-    3: "Am I willing to be open-minded and fully engaged in order to receive maximum benefit from this time together?",
-    4: "The result of coaching in this model is always action. Am I willing to see the most authentic action to take? If I am the person being coached, am I willing to take it?",
+    1: 'There are some qualities I am willing to demonstrate in this interaction so we can both make sure we have an extraordinary result out of our session together:',
+    2: 'During the session am I willing to set aside the opinions, beliefs, and thoughts that may be getting in the way of seeing something clearly?',
+    3: 'Am I willing to be open-minded and fully engaged in order to receive maximum benefit from this time together?',
+    4: 'The result of coaching in this model is always action. Am I willing to see the most authentic action to take? If I am the person being coached, am I willing to take it?',
   },
 };
 
 function getArenaType() {
-  return window.location.pathname === "/client" ? "client" : "full";
+  return window.location.pathname === '/client' ? 'client' : 'full';
 }
 
 const arenaType = getArenaType();
@@ -66,12 +61,12 @@ const MAX_QUALITIES = 5;
 
 function App(): React$MixedElement {
   const [activeQualities, setActiveQualities] = useState<
-    $ReadOnlyArray<string>
+    $ReadOnlyArray<string>,
   >([]);
 
   // Load qualities on initial load
   useLayoutEffect(() => {
-    const qualities = ls.get("activeQualities");
+    const qualities = ls.get('activeQualities');
     if (qualities != null && qualities.length > 0) {
       setActiveQualities(qualities);
     }
@@ -79,7 +74,7 @@ function App(): React$MixedElement {
 
   useEffect(() => {
     // TODO: Throttle this?
-    ls.set("activeQualities", activeQualities);
+    ls.set('activeQualities', activeQualities);
   }, [activeQualities]);
 
   const toggleQuality = useCallback(
@@ -92,7 +87,7 @@ function App(): React$MixedElement {
         setActiveQualities(activeQualities.concat(word));
       }
     },
-    [activeQualities]
+    [activeQualities],
   );
 
   const isMaxQualities = activeQualities.length >= MAX_QUALITIES;
@@ -103,7 +98,7 @@ function App(): React$MixedElement {
         <meta charSet="utf-8" />
         {/* manifest.json provides metadata used when your web app is installed on a
           user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/ */}
-        <link rel="manifest" href={"/manifest-" + arenaType + ".json"} />
+        <link rel="manifest" href={`/manifest-${arenaType}.json`} />
       </Helmet>
       <div className="container-narrow">
         <div className="masthead">
@@ -112,13 +107,12 @@ function App(): React$MixedElement {
 
         <div id="qualities">
           <h4>
-            Qualities of Being{" "}
+            Qualities of Being{' '}
             <Button
-              variant="warning"
+              color="warning"
               size="sm"
               id="clear_qualities"
-              onClick={() => setActiveQualities([])}
-            >
+              onClick={() => setActiveQualities([])}>
               Reset
             </Button>
           </h4>
@@ -128,10 +122,10 @@ function App(): React$MixedElement {
               return (
                 <li key={word}>
                   <Button
-                    variant={isActive ? "primary" : "light"}
+                    color={isActive ? 'primary' : 'neutral'}
+                    variant={isActive ? 'solid' : 'soft'}
                     onClick={() => toggleQuality(word)}
-                    disabled={isMaxQualities && !isActive}
-                  >
+                    disabled={isMaxQualities && !isActive}>
                     {word}
                   </Button>
                 </li>
@@ -148,7 +142,7 @@ function App(): React$MixedElement {
               <p>
                 <em>I am willing to be:</em>
               </p>
-              <div style={{ marginBottom: 12 }}>
+              <div style={{marginBottom: 12}}>
                 <VerticalButtons
                   words={activeQualities}
                   fillLength={MAX_QUALITIES}
@@ -170,14 +164,14 @@ function App(): React$MixedElement {
         <hr />
         <p>
           <em>
-            SetTheArena.com: <a href="/">Main Arena</a> •{" "}
+            SetTheArena.com: <a href="/">Main Arena</a> •{' '}
             <a href="/client">Client Arena</a>
           </em>
         </p>
 
         <div className="footer">
           <p>
-            Copyright &copy; 1997-{new Date().getFullYear()}{" "}
+            Copyright &copy; 1997-{new Date().getFullYear()}{' '}
             <a href="https://acecoachtraining.com/">
               Academy for Coaching Excellence
             </a>
