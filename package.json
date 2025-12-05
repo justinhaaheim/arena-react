@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
+    "@playwright/test": "^1.57.0",
     "ftp-deploy": "^2.3.7",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
